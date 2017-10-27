@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<title> Movie Search! </title>
+<head>
+  <link rel="stylesheet" href="movieSearch.css">
+  <script src = "movieSearch.js"> </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="search">
+  <form id="searchForm" >
+    <select id ="searchSelect"><option value =" ">Search By </option>
+      <option value ="Movie">Movie </option>
+        <option value ="TV Show">TV Show </option>
+          <option value ="Genre">Genre </option>
+            <option value ="People">People </select>
+</form>
+<input type="text" id="movieSearch" onkeypress="javascript:doit_onkeypress(event);"/>
+<input type="button" id="clickButton" value ="submit" onclick ="searchMovies()"/>
+
+<div id= "movieResults">
+
+</div>
+    <p> click here to see today's TV Listings </p>
+      <input type="button" id="clickButton" value ="OK" onclick ="tvToday()"/>
+    <div id = "todaysListings">
+
+    </div>
+
+</div>
+</div>
+
+</body>
+</html>
