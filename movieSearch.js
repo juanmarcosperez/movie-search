@@ -1,5 +1,5 @@
 var base_url = 'https://image.tmdb.org/t/p/w185';
-
+//function changes genre to id to search
 function searchByGenre(genreName){
     var genreId = 0;
     switch(genreName){
@@ -116,9 +116,9 @@ function searchMovies(){
         $('#movieResults').append('<p> Release Date: ' + data.results[0].release_date+ ' (yyyy,dd,mm)</p>');
         $('#movieResults').append('<p> Vote Average: ' + data.results[0].vote_average+ '</p>');
         $('#movieResults').append('<p> Original Language: ' + data.results[0].original_language+ '</p>');
-          });
-          }
-        )
+                });
+            }
+        )// end fetch call
 
       .catch(function(err){
         console.log('Fetch Error :-S', err);
@@ -142,9 +142,9 @@ function searchMovies(){
           $('#movieResults').append('<p> First Air Date: ' + data.results[0].first_air_date+ '</p>');
           $('#movieResults').append('<p> Overview: ' + data.results[0].overview+ '</p>');
           $('#movieResults').append('<p> Vote Average: ' + data.results[0].vote_average+ '</p>');
-      });
-      }
-      )
+                  });
+              }
+      )// end fetch call
 
       .catch(function(err){
       console.log('Fetch Error :-S', err);
@@ -172,9 +172,9 @@ function searchMovies(){
           //$('#movieResults').append('</table>');
         }
         $('#movieResults').append('</table>');
-      });
-      }
-      )
+                });
+            }
+      )// end then call
 
       .catch(function(err){
       console.log('Fetch Error :-S', err);
@@ -193,9 +193,9 @@ function searchMovies(){
         response.json().then(function(data){
           searchPeopleId(data.results[0].id);
 
-      });
-      }
-      )
+                });
+            }
+      )// end then call
 
       .catch(function(err){
       console.log('Fetch Error :-S', err);
@@ -211,7 +211,7 @@ function tvToday(){
    if(response.status !== 200){
      console.log('Looks like there was a problem. Status Code: ' + response.status);
      return;
- }
+      }
    //Examine the text in the response
    response.json().then(function(data){
      console.log(data);
@@ -223,9 +223,9 @@ function tvToday(){
      $('#todaysListings').append('<p> Vote Average ' + data.results[i].vote_average+ '</p>');
      $('#todaysListings').append('<p> Original Name ' + data.results[i].original_name+ '</p>');
       }
- });
- }
- )
+              });
+          }
+      )
 
  .catch(function(err){
  console.log('Fetch Error :-S', err);
