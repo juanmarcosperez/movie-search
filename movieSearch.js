@@ -1,4 +1,4 @@
-var base_url = 'https://image.tmdb.org/t/p/w185';
+var URL = 'https://image.tmdb.org/t/p/w185';
 //function changes genre to id to search
 function searchByGenre(genreName){
     var genreId = 0;
@@ -91,16 +91,12 @@ function doit_onkeypress(event){
 
 
 function searchMovies(){
-
-
-  var movie_data = document.getElementById("movieSearch").value;
-  var user_input = movie_data;
+  var inputData = document.getElementById("movieSearch").value;
   var searchBy = document.getElementById("searchSelect").value;
-  document.getElementById("movieSearch").value="";
 
   switch(searchBy){
     case "Movie":
-    fetch('https://api.themoviedb.org/3/search/movie?api_key=6125b5ec93157ac1d7ec03c2a0ecbf16&query=' + user_input)
+    fetch('https://api.themoviedb.org/3/search/movie?api_key=6125b5ec93157ac1d7ec03c2a0ecbf16&query=' + inputData)
     .then(function(response) {
       if(response.status !== 200){
         console.log('Looks like there was a problem. Status Code: ' + response.status);
@@ -111,7 +107,7 @@ function searchMovies(){
         console.log(data);
         console.log(data.results[0].overview);
         $('#movieResults').empty();
-        $('#movieResults').append('<img src =" '+ base_url + data.results[0].poster_path+' " </img>');
+        $('#movieResults').append('<img src =" '+ URL + data.results[0].poster_path+' " </img>');
         $('#movieResults').append('<p> Movie Description: ' + data.results[0].overview+ '</p>');
         $('#movieResults').append('<p> Release Date: ' + data.results[0].release_date+ ' (yyyy,dd,mm)</p>');
         $('#movieResults').append('<p> Vote Average: ' + data.results[0].vote_average+ '</p>');
@@ -127,7 +123,7 @@ function searchMovies(){
       break;
 
       case "TV Show":
-      fetch('https://api.themoviedb.org/3/search/tv?api_key=6125b5ec93157ac1d7ec03c2a0ecbf16&language=en-US&query=' + user_input)
+      fetch('https://api.themoviedb.org/3/search/tv?api_key=6125b5ec93157ac1d7ec03c2a0ecbf16&language=en-US&query=' + inputData)
       .then(function(response) {
         if(response.status !== 200){
           console.log('Looks like there was a problem. Status Code: ' + response.status);
@@ -137,7 +133,7 @@ function searchMovies(){
         response.json().then(function(data){
           console.log(data);
           $('#movieResults').empty();
-          $('#movieResults').append('<img src =" '+ base_url + data.results[0].poster_path+' "> </img>');
+          $('#movieResults').append('<img src =" '+ URL + data.results[0].poster_path+' "> </img>');
           $('#movieResults').append('<p> Name: ' + data.results[0].name+ '</p>');
           $('#movieResults').append('<p> First Air Date: ' + data.results[0].first_air_date+ '</p>');
           $('#movieResults').append('<p> Overview: ' + data.results[0].overview+ '</p>');
@@ -153,7 +149,7 @@ function searchMovies(){
       break;
 
       case "Genre":
-      searchId = searchByGenre (user_input);
+      searchId = searchByGenre (inputData);
       fetch('https://api.themoviedb.org/3/genre/'  + searchId +  '/movies?api_key=6125b5ec93157ac1d7ec03c2a0ecbf16&language=en-US&include_adult=true&sort_by=created_at.asc')
       .then(function(response) {
         if(response.status !== 200){
@@ -166,10 +162,7 @@ function searchMovies(){
           $('#movieResults').empty();
           $('#movieResults').append('<table>');
           for (i = 0; i < data.results.length ; i++){
-          //$('#movieResults').empty();
-          //$('#movieResults').append('<table>');
           $('#movieResults').append('<p> Name: ' + data.results[i].title+ '</p>');
-          //$('#movieResults').append('</table>');
         }
         $('#movieResults').append('</table>');
                 });
@@ -183,7 +176,7 @@ function searchMovies(){
       break;
 
       case "People":
-      fetch('https://api.themoviedb.org/3/search/person?api_key=6125b5ec93157ac1d7ec03c2a0ecbf16&language=en-US&query=' + user_input)
+      fetch('https://api.themoviedb.org/3/search/person?api_key=6125b5ec93157ac1d7ec03c2a0ecbf16&language=en-US&query=' + inputData)
       .then(function(response) {
         if(response.status !== 200){
           console.log('Looks like there was a problem. Status Code: ' + response.status);
