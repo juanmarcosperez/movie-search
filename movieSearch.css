@@ -1,0 +1,9 @@
+#result {
+    text-align: left;
+    font-family: "Arial";
+    border: round;
+    border-width: 20px;
+    padding-right: 30%;
+    border-color: black;
+
+}

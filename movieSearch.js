@@ -1,4 +1,4 @@
-var URL = 'https://image.tmdb.org/t/p/w185';
+var URL = 'https://image.tmdb.org/t/p/w150';
 //function changes genre to id to search
 function searchByGenre(genreName){
     var genreId = 0;
@@ -72,10 +72,10 @@ function searchPeopleId(person){
     //Examine the text in the response
     response.json().then(function(personInfo){
       console.log(personInfo);
-      $('#movieResults').empty();
-      $('#todaysListings').append('<p> Name: ' + personInfo.name + '</p>');
-      $('#todaysListings').append('<p> Biography: ' + personInfo.biography + '</p>');
-      $('#todaysListings').append('<p> Place of Birth: ' + personInfo.place_of_birth+ '</p>');
+      $('#result').empty();
+      $('#result').append('<p> Name: ' + personInfo.name + '</p>');
+      $('#result').append('<p> Biography: ' + personInfo.biography + '</p>');
+      $('#result').append('<p> Place of Birth: ' + personInfo.place_of_birth+ '</p>');
 
   });
   }
@@ -106,12 +106,12 @@ function searchMovies(){
       response.json().then(function(data){
         console.log(data);
         console.log(data.results[0].overview);
-        $('#movieResults').empty();
-        $('#movieResults').append('<img src =" '+ URL + data.results[0].poster_path+' " </img>');
-        $('#movieResults').append('<p> Movie Description: ' + data.results[0].overview+ '</p>');
-        $('#movieResults').append('<p> Release Date: ' + data.results[0].release_date+ ' (yyyy,dd,mm)</p>');
-        $('#movieResults').append('<p> Vote Average: ' + data.results[0].vote_average+ '</p>');
-        $('#movieResults').append('<p> Original Language: ' + data.results[0].original_language+ '</p>');
+        $('#result').empty();
+        $('#result').append('<img src =" '+ URL + data.results[0].poster_path+' " align ="left" </img>');
+        $('#result').append('<p> Movie Description: ' + data.results[0].overview+ '</p>');
+        $('#result').append('<p> Release Date: ' + data.results[0].release_date+ ' (yyyy,dd,mm)</p>');
+        $('#result').append('<p> Vote Average: ' + data.results[0].vote_average+ '</p>');
+        $('#result').append('<p> Original Language: ' + data.results[0].original_language+ '</p>');
                 });
             }
         )// end fetch call
@@ -132,12 +132,12 @@ function searchMovies(){
         //Examine the text in the response
         response.json().then(function(data){
           console.log(data);
-          $('#movieResults').empty();
-          $('#movieResults').append('<img src =" '+ URL + data.results[0].poster_path+' "> </img>');
-          $('#movieResults').append('<p> Name: ' + data.results[0].name+ '</p>');
-          $('#movieResults').append('<p> First Air Date: ' + data.results[0].first_air_date+ '</p>');
-          $('#movieResults').append('<p> Overview: ' + data.results[0].overview+ '</p>');
-          $('#movieResults').append('<p> Vote Average: ' + data.results[0].vote_average+ '</p>');
+          $('#result').empty();
+          $('#result').append('<img src =" '+ URL + data.results[0].poster_path+' "> </img>');
+          $('#result').append('<p> Name: ' + data.results[0].name+ '</p>');
+          $('#result').append('<p> First Air Date: ' + data.results[0].first_air_date+ '</p>');
+          $('#result').append('<p> Overview: ' + data.results[0].overview+ '</p>');
+          $('#result').append('<p> Vote Average: ' + data.results[0].vote_average+ '</p>');
                   });
               }
       )// end fetch call
@@ -159,12 +159,12 @@ function searchMovies(){
         //Examine the text in the response
         response.json().then(function(data){
           console.log(data);
-          $('#movieResults').empty();
-          $('#movieResults').append('<table>');
+          $('#result').empty();
+          $('#result').append('<table>');
           for (i = 0; i < data.results.length ; i++){
-          $('#movieResults').append('<p> Name: ' + data.results[i].title+ '</p>');
+          $('#result').append('<p> Name: ' + data.results[i].title+ '</p>');
         }
-        $('#movieResults').append('</table>');
+        $('#result').append('</table>');
                 });
             }
       )// end then call
@@ -209,7 +209,7 @@ function tvToday(){
    response.json().then(function(data){
      console.log(data);
      for ( i=0; i< data.results.length;i++){
-     $('#todaysListings').append('<img src =" '+ base_url + data.results[i].poster_path+' " </img>');
+     $('#todaysListings').append('<img src =" '+ URL + data.results[i].poster_path+' " </img>');
      $('#todaysListings').append('<p> Name: ' + data.results[i].name+ '</p>');
      $('#todaysListings').append('<p> First Air Date: ' + data.results[i].first_air_date+ '</p>');
      $('#todaysListings').append('<p> Overview: ' + data.results[i].overview+ '</p>');

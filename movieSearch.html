@@ -12,24 +12,28 @@
   <form id="searchForm" >
     <select id ="searchSelect"><option value =" ">Search By </option>
       <option value ="Movie">Movie </option>
-        <option value ="TV Show">TV Show </option>
-          <option value ="Genre">Genre </option>
-            <option value ="People">People </select>
-</form>
+      <option value ="TV Show">TV Show </option>
+      <option value ="Genre">Genre </option>
+      <option value ="People">People </select>
+   </form>
 <input type="text" id="movieSearch" onkeypress="javascript:doit_onkeypress(event);"/>
 <input type="button" id="clickButton" value ="submit" onclick ="searchMovies()"/>
+<p> click here to see today's TV Listings: </p>
+  <input type="button" id="clickButton" value ="OK" onclick ="tvToday()"/>
+</div><!-- end search div -->
+<br>
+<br>
+<br>
+<div id= "result">
 
-<div id= "movieResults">
+</div> <!-- end result -->
+<br>
+<br>
+<br>
 
-</div>
-    <p> click here to see today's TV Listings: </p>
-      <input type="button" id="clickButton" value ="OK" onclick ="tvToday()"/>
-    <div id = "todaysListings">
+<div id = "todaysListings">
 
-    </div>
-
-</div>
-</div>
+</div> <!-- end todaysListings -->
 
 </body>
 </html>
