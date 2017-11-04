@@ -1,4 +1,20 @@
 var URL = 'https://image.tmdb.org/t/p/w150';
+
+function myFunction() {
+    var x = document.getElementById("result");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function doit_onkeypress(event){
+      if (event.keyCode == 13 || event.which == 13){
+          searchMovies();
+    }
+}
+
 //function changes genre to id to search
 function searchByGenre(genreName){
     var genreId = 0;
@@ -72,23 +88,16 @@ function searchPeopleId(person){
     //Examine the text in the response
     response.json().then(function(personInfo){
         console.log(personInfo);
-        var html_content = '' ;
-        html_content += "<p> Name:" + personInfo.name + "</p>";
-        html_content += "<p> Biography: " + personInfo.biography+ " (yyyy,mm,dd)</p>";
-        html_content += "<p> Place of Birth: " + personInfo.place_of_birth + "</p>";
-
+        var htmlContent = '' ;
+        htmlContent += "<p> Name:" + personInfo.name + "</p>";
+        htmlContent += "<p> Biography: " + personInfo.biography+ " (yyyy,mm,dd)</p>";
+        htmlContent += "<p> Place of Birth: " + personInfo.place_of_birth + "</p>";
+        document.getElementById('result' ).innerHTML = htmlContent;
   });
   }
   )
 
 }
-
-function doit_onkeypress(event){
-      if (event.keyCode == 13 || event.which == 13){
-          searchMovies();
-    }
-}
-
 
 function searchMovies(){
   var inputData = document.getElementById("movieSearch").value;
@@ -106,15 +115,16 @@ function searchMovies(){
             response.json().then(function(data){
                 console.log(data);
                 console.log(data.results[0].overview);
-                var html_content = '' ;
-                html_content += "<h1 > " + data.results[0].title + "</h1>";
-                html_content += "<img src =" + URL + data.results[0].poster_path+ " </img>";
-                html_content += "<p> " + data.results[0].overview + "</p>";
-                html_content += "<p> Release Date: " + data.results[0].release_date+ " (yyyy,mm,dd)</p>";
-                html_content += "<p> Vote Average: " + data.results[0].vote_average + "</p>";
-                html_content += "<br>";
-                document.getElementById('result' ).innerHTML = html_content;
+                var htmlContent = '' ;
+                htmlContent += "<h1 > " + data.results[0].title + "</h1>";
+                htmlContent += "<img src =" + URL + data.results[0].poster_path+ " </img>";
+                htmlContent += "<p> " + data.results[0].overview + "</p>";
+                htmlContent += "<p> Release Date: " + data.results[0].release_date+ " (yyyy,mm,dd)</p>";
+                htmlContent += "<p> Vote Average: " + data.results[0].vote_average + "</p>";
+                htmlContent += "<br>";
+                document.getElementById('result' ).innerHTML = htmlContent;
                 });
+
             }
         )// end fetch call
 
@@ -134,13 +144,13 @@ function searchMovies(){
         //Examine the text in the response
           response.json().then(function(data){
               console.log(data);
-              var html_content = '' ;
-              html_content += "<h1 > " + data.results[0].name + "</h1>";
-              html_content += "<img src =" + URL + data.results[0].poster_path+ " </img>";
-              html_content += "<p> " + data.results[0].overview + "</p>";
-              html_content += "<p> Release Date: " + data.results[0].first_air_date+ " (yyyy,mm,dd)</p>";
-              html_content += "<p> Vote Average: " + data.results[0].vote_average + "</p>";
-              document.getElementById('result' ).innerHTML = html_content;
+              var htmlContent = '' ;
+              htmlContent += "<h1 > " + data.results[0].name + "</h1>";
+              htmlContent += "<img src =" + URL + data.results[0].poster_path+ " </img>";
+              htmlContent += "<p> " + data.results[0].overview + "</p>";
+              htmlContent += "<p> Release Date: " + data.results[0].first_air_date+ " (yyyy,mm,dd)</p>";
+              htmlContent += "<p> Vote Average: " + data.results[0].vote_average + "</p>";
+              document.getElementById('result' ).innerHTML = htmlContent;
                   });
               }
       )// end fetch call
@@ -162,13 +172,15 @@ function searchMovies(){
         //Examine the text in the response
           response.json().then(function(data){
             console.log(data);
-            var html_content = '' ;
+            var htmlContent = '<table>' ;
                 for (i = 0; i < data.results.length ; i++){
-                  html_content += "<h1 > " + data.results[i].title + "</h1>";
-                  html_content += "<p > " + data.results[i].overview +  "</p>";
-                  html_content += "<img src =" + URL + data.results[i].poster_path+ "></img> ";
-                  document.getElementById('result' ).innerHTML = html_content;
+                  htmlContent += "<tr><td>"+"<p > " + data.results[i].title + "</p>"+"</tr></td>";
+                  //htmlContent += "<tr><td>" + data.results[i].title + "</tr></td>";
+                  htmlContent += "<tr><td align ='left'>"+"<img src =" + URL + data.results[i].poster_path+ "></img> "+"<td > " + data.results[i].overview +  "</td>"+"</tr></td>";
+                //  htmlContent += "<tr><td align = 'right'>"+"<p > " + data.results[i].overview +  "</p>"+"<tr><td>";
                   }
+                  htmlContent += '<table>'
+                  document.getElementById('result' ).innerHTML = htmlContent;
                 });
             }
       )// end then call
@@ -211,16 +223,17 @@ function tvToday(){
    //Examine the text in the response
         response.json().then(function(data){
           console.log(data);
-          var html_content = '' ;
+          var htmlContent = '' ;
             for ( i=0; i< data.results.length;i++){
-                html_content += "<img src =" + URL + data.results[i].poster_path+  "></img>";
-                html_content += "<p> Name: " + data.results[i].name+  "</p>";
-                html_content += "<p> First Air Date: "  + data.results[i].first_air_date+ "</p>";
-                html_content += "<p> Overview: " + data.results[i].overview + "</p>";
-                html_content += "<p> Vote Average " + data.results[i].vote_average+ "</p>";
-                html_content += "<p> Original Name " + data.results[i].original_name+ "</p>";
+                htmlContent += "<img src =" + URL + data.results[i].poster_path+  "></img>";
+                htmlContent += "<p> Name: " + data.results[i].name+  "</p>";
+                htmlContent += "<p> First Air Date: "  + data.results[i].first_air_date+ "</p>";
+                htmlContent += "<p> Overview: " + data.results[i].overview + "</p>";
+                htmlContent += "<p> Vote Average: " + data.results[i].vote_average+ "</p>";
+                htmlContent += "<br>";
+                htmlContent += "<br>";
                   }
-          document.getElementById('result').innerHTML = html_content;
+          document.getElementById('result').innerHTML = htmlContent;
               });
           }
       )
