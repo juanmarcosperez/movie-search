@@ -1,5 +1,9 @@
 var URL = 'https://image.tmdb.org/t/p/w150';
 
+function display() {
+    document.getElementById("result").style.display = "block";
+}
+
 function myFunction() {
     var x = document.getElementById("result");
     if (x.style.display === "none") {
@@ -7,6 +11,14 @@ function myFunction() {
     } else {
         x.style.display = "none";
     }
+
+    var x = document.getElementById("table");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+
 }
 
 function doit_onkeypress(event){
@@ -78,7 +90,7 @@ function searchByGenre(genreName){
 }
 
 function searchPeopleId(person){
-
+  display();
   fetch('https://api.themoviedb.org/3/person/'+ person + '?api_key=6125b5ec93157ac1d7ec03c2a0ecbf16&language=en-US')
     .then(function(response) {
       if(response.status !== 200){
@@ -100,11 +112,13 @@ function searchPeopleId(person){
 }
 
 function searchMovies(){
+
   var inputData = document.getElementById("movieSearch").value;
   var searchBy = document.getElementById("searchSelect").value;
 
   switch(searchBy){
     case "Movie":
+    display();
       fetch('https://api.themoviedb.org/3/search/movie?api_key=6125b5ec93157ac1d7ec03c2a0ecbf16&query=' + inputData)
         .then(function(response) {
             if(response.status !== 200){
@@ -135,6 +149,7 @@ function searchMovies(){
   break;
 
       case "TV Show":
+      display();
       fetch('https://api.themoviedb.org/3/search/tv?api_key=6125b5ec93157ac1d7ec03c2a0ecbf16&language=en-US&query=' + inputData)
         .then(function(response) {
           if(response.status !== 200){
@@ -162,6 +177,7 @@ function searchMovies(){
   break;
 
       case "Genre":
+      display();
       searchId = searchByGenre (inputData);
       fetch('https://api.themoviedb.org/3/genre/'  + searchId +  '/movies?api_key=6125b5ec93157ac1d7ec03c2a0ecbf16&language=en-US&include_adult=true&sort_by=created_at.asc')
         .then(function(response) {
@@ -180,7 +196,7 @@ function searchMovies(){
                 //  htmlContent += "<tr><td align = 'right'>"+"<p > " + data.results[i].overview +  "</p>"+"<tr><td>";
                   }
                   htmlContent += '<table>'
-                  document.getElementById('result' ).innerHTML = htmlContent;
+                  document.getElementById('table' ).innerHTML = htmlContent;
                 });
             }
       )// end then call
@@ -192,6 +208,7 @@ function searchMovies(){
   break;
 
       case "People":
+      display();
       fetch('https://api.themoviedb.org/3/search/person?api_key=6125b5ec93157ac1d7ec03c2a0ecbf16&language=en-US&query=' + inputData)
         .then(function(response) {
           if(response.status !== 200){
@@ -214,6 +231,7 @@ function searchMovies(){
 }
 
 function tvToday(){
+  display();
       fetch('https://api.themoviedb.org/3/tv/airing_today?api_key=6125b5ec93157ac1d7ec03c2a0ecbf16&language=en-US&page=1')
         .then(function(response) {
             if(response.status !== 200){

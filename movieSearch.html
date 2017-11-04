@@ -19,7 +19,7 @@
 <input type="text" id="movieSearch" onkeypress="javascript:doit_onkeypress(event);"/>
 <input type="button" id="clickButton" value ="submit" onclick ="searchMovies()"/>
 <p> click here to see today's TV Listings: </p>
-  <input type="button" id="clickButton" value ="OK" onclick ="tvToday()"/>
+  <input type="button" id="clickButton" value ="OK" onclick ="tvToday();myFunction()"/>
    <button onclick="myFunction()">Hide Results</button>
 </div><!-- end search div -->
 <br>
@@ -29,6 +29,8 @@
 </div> <!-- end result -->
 <br>
 <br>
+<div id = "table">
+</div>
 <br>
 
 <div id = "todaysListings">

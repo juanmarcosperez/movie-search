@@ -1,9 +1,18 @@
 #result {
     text-align: left;
     font-family: "Arial";
+    width: 700px;
+    height: 400px;
     border: round;
     border-width: 20px;
-    padding-right: 30%;
-    border-color: black;
+    background-color: gray;
+    box-shadow: 10px 10px 5px #888888;
+}
 
+#result{
+  display: none;
+}
+
+#todaysListings{
+  background-color: gray;
 }
