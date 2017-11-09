@@ -24,6 +24,8 @@ function myFunction() {
 function doit_onkeypress(event){
       if (event.keyCode == 13 || event.which == 13){
           searchMovies();
+          event.preventDefault();
+          event.currentTarget.value = "";
     }
 }
 
